@@ -1,0 +1,421 @@
+/* src/App.css */
+:root {
+  --primary-color: #3498db;
+  --primary-dark: #2980b9;
+  --secondary-color: #2ecc71;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --text-light: #95a5a6;
+  --background: #f8f9fa;
+  --card-bg: #ffffff;
+  --border-color: #e1e4e8;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  background-image: url('https://egov.eletsonline.com/wp-content/uploads/2017/07/medical-cadre.jpg');
+  background-size: cover;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-header h1 {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.app-header p {
+  color: var(--text-secondary);
+  margin: 12px 0 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.search-container {
+  margin-bottom: 35px;
+}
+
+.drug-search {
+  display: flex;
+  gap: 12px;
+  box-shadow: var(--shadow-md);
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  padding: 5px;
+
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  background-color: transparent;
+  outline: none;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.search-button {
+  padding: 12px 28px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 25px;
+  font-size: 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.loading {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.loading::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(52, 152, 219, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--error-color);
+  border-left: 4px solid var(--error-color);
+}
+
+.results-container {
+  display: flex;
+  gap: 30px;
+}
+
+.drug-list-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.drug-details-container {
+  flex: 2;
+}
+
+.drug-list {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: var(--shadow-md);
+  height: 100%;
+}
+
+.drug-list h2 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.drug-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drug-item {
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.drug-item:last-child {
+  margin-bottom: 0;
+}
+
+.drug-item:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+  border-color: rgba(52, 152, 219, 0.2);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.drug-item.selected {
+  background-color: rgba(52, 152, 219, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.drug-name {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.drug-generic {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.drug-details {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  height: 100%;
+}
+
+.drug-details h2 {
+  margin-top: 0;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.drug-details h3 {
+  color: var(--text-secondary);
+  margin-top: 5px;
+  margin-bottom: 25px;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.info-source {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  padding: 8px 12px;
+  background-color: rgba(52, 152, 219, 0.1);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.detail-section {
+  margin-bottom: 30px;
+}
+
+.detail-section h4 {
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.detail-section h4::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background-color: var(--primary-color);
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.detail-section p {
+  line-height: 1.7;
+  color: var(--text-secondary);
+  padding-left: 14px;
+}
+
+.placeholder {
+  text-align: center;
+  padding: 60px 30px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon {
+  margin-bottom: 25px;
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.placeholder h3 {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.placeholder p {
+  color: var(--text-light);
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.no-results {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-secondary);
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.app-footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .results-container {
+    flex-direction: column;
+  }
+  
+  .drug-list-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .app-header p {
+    font-size: 1rem;
+  }
+  
+  .drug-search {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  
+  .search-input {
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .search-button {
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .drug-details {
+    padding: 20px;
+  }
+  
+  .drug-details h2 {
+    font-size: 1.6rem;
+  }
+  
+  .detail-section h4 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .app {
+    padding: 15px;
+  }
+  
+  .app-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+  }
+  
+  .search-container {
+    margin-bottom: 25px;
+  }
+  
+  .drug-list, .drug-details, .placeholder {
+    padding: 15px;
+  }
+  
+  .placeholder {
+    padding: 40px 20px;
+  }
+}
